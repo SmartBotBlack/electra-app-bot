@@ -176,6 +176,8 @@ const getQueryId = async (phoneNumber: string, session: string) => {
 				message: "/start",
 			});
 
+			await new Promise((res) => setTimeout(res, 10 * 1e3));
+
 			if (!startMessage) {
 				throw new Error("Failed to send command to the bot.");
 			}
@@ -194,7 +196,6 @@ const getQueryId = async (phoneNumber: string, session: string) => {
 
 					for (const row of msg.buttons) {
 						for (const button of row) {
-							console.log("button2", button);
 							if (button.text?.includes("Launch Electra")) {
 								return button.button;
 							}
